@@ -9,9 +9,9 @@
 #Create a user
 User.create(username: 'Player One')
 
-for x in 0..9 do
-    for y in 0..9 do
-        Pixel.create(color: '#FFFFFF', x:x, y:y)
+for x in 0..49 do
+    for y in 0..49 do
+        Pixel.create(color: 'red', x:x, y:y)
     end 
 end
 
