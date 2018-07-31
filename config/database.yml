@@ -80,7 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: myapp_production
+  database: colors_production
   host: localhost
-  username: postgres
+  username: test1
   password: DC060418
