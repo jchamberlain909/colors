@@ -20,6 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 16
+  host: localhost
+  username: pguser
+  password: DC060418
 
 development:
   <<: *default
@@ -81,6 +84,4 @@ test:
 production:
   <<: *default
   database: colors_production
-  host: localhost
-  username: test1
-  password: DC060418
+  
