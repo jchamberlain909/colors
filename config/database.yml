@@ -84,4 +84,7 @@ test:
 production:
   <<: *default
   database: myapp_production
+  host: localhost
+  username: myapp_deployment
+  password: DC060418
   
