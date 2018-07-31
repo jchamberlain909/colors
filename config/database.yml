@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: myapp_production
-  username: potgres
+  username: postgres
   password: DC060418
