@@ -83,5 +83,5 @@ test:
 #
 production:
   <<: *default
-  database: colors-take2_production
+  database: myapp_production
   
