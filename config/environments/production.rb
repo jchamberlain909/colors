@@ -84,5 +84,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
+  config.allow_concurrency = true
   config.require_master_key = true
 end
