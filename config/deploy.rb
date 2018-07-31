@@ -5,7 +5,7 @@ set :repo_url,        'git@github.com:jchamberlain909/colors.git'
 set :application,     'colors'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
-set :puma_workers,    3
+set :puma_workers,    10
 
 # Don't change these unless you know what you're doing
 set :pty,             true
