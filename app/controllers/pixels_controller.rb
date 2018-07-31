@@ -13,6 +13,7 @@ class PixelsController < ApplicationController
     def update
         pixel = Pixel.find(params[:id])
         pixel.update(params.require(:pixel).permit(:color,:user_id))
+        SseRailsEngine.send_event('pixel', pixel)
         render json: pixel, status: 200
     end
 
