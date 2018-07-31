@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: myapp_production
+  host: localhost
   username: postgres
   password: DC060418
