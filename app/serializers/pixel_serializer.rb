@@ -1,3 +1,3 @@
 class PixelSerializer < ActiveModel::Serializer
-  attributes :x, :y, :color
+  attributes :id, :x, :y, :color
 end

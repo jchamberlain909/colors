@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.find_or_create_by(params.require(:user).permit(:username))
+        user = User.find_or_create_by(params.require(:user).permit(:username, :board_id))
         render json: user, status: 200
     end
 

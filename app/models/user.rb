@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-    has_many :pixels
+    belongs_to :board
 end

@@ -10,14 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_132147) do
+ActiveRecord::Schema.define(version: 2018_08_01_145037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "boards", force: :cascade do |t|
+    t.string "game_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pixels", force: :cascade do |t|
     t.string "color"
-    t.integer "user_id"
+    t.integer "board_id"
     t.integer "x"
     t.integer "y"
     t.datetime "created_at", null: false
@@ -27,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_07_30_132147) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.integer "totalPixels", default: 0
+    t.integer "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

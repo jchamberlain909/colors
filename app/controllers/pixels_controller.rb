@@ -13,7 +13,6 @@ class PixelsController < ApplicationController
     def update
         pixel = Pixel.find(params[:id])
         pixel.update(params.require(:pixel).permit(:color,:user_id))
-        # SseRailsEngine.send_event('pixel', pixel)
         render json: pixel, status: 200
     end
 
@@ -23,8 +22,8 @@ class PixelsController < ApplicationController
         
         begin
             Pixel.on_change do |pixel|
-            sse.write(pixel)
-        end
+                sse.write(pixel)
+            end
         rescue IOError
             # Client Disconnected
         ensure
@@ -32,4 +31,5 @@ class PixelsController < ApplicationController
         end
         render nothing: true
     end
+    
 end
