@@ -16,7 +16,7 @@ class Pixel < ApplicationRecord
     end
 
     def basic_info_json
-        JSON.generate({id: id, color: color,x: x, y: y })
+        JSON.generate({id: id, color: color,x: x, y: y, board_id: board_id })
     end
 
 

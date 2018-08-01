@@ -1,4 +1,7 @@
 class BoardsController < ApplicationController
+    include ActionController::Live
+
+    @@sse
     
     def index
         render json: Board.all, status: 200
@@ -37,6 +40,30 @@ class BoardsController < ApplicationController
 
         Board.destroy(params[:id])
         render json: {}, status: 200
+    end
+
+
+    def subscribe
+        response.headers['Content-Type'] = 'text/event-stream'
+        sse= SSE.new(response.stream)
+
+        begin
+            Pixel.on_change do |pixel|
+                split = pixel.split(':')
+                puts split.last.chop 
+                puts params[:id]
+                if split.last.chop == params[:id]
+                    puts "send"
+                    sse.write(pixel)
+                end
+                
+            end
+        rescue IOError
+            # Client Disconnected
+        ensure
+            sse.close
+        end
+        render nothing: true
     end
 
 
