@@ -28,9 +28,9 @@ class SsesController < ApplicationController
     
 
     def message
-        Thread.new do
+        
             $redis.publish 'messages', {message:params[:message]}.to_json
-        end
+        
         
         render render json: {message:params[:message]}.to_json, status: 200
     end
