@@ -29,8 +29,8 @@ class SsesController < ApplicationController
     
 
     def message
-        
-        Redis.new.publish 'messages', {message:params[:message]}.to_json
+    
+        Redis.new.publish 'messages', {message:params[:message],username:params[:username],time: DateTime.now.strftime("%I:%M")}.to_json
         
         
         render json: {message:params[:message]}.to_json, status: 200
