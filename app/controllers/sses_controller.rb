@@ -30,7 +30,7 @@ class SsesController < ApplicationController
 
     def message
         
-        $redis.publish 'messages', {message:params[:message]}.to_json
+        Redis.new.publish 'messages', {message:params[:message]}.to_json
         
         
         render json: {message:params[:message]}.to_json, status: 200
