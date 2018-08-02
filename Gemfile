@@ -52,3 +52,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'active_model_serializers'
+
+gem 'redis'
+gem 'redis-namespace'
