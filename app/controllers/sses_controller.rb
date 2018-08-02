@@ -2,6 +2,7 @@ class SsesController < ApplicationController
     include ActionController::Live
     
     def subscribe
+        puts 'subscribe'
         response.headers['Content-Type'] = 'text/event-stream'
         response.headers['Cache-Control'] = 'no-cache'
         response.headers['X-Accel-Buffering'] = 'no'
@@ -32,6 +33,6 @@ class SsesController < ApplicationController
             $redis.publish 'messages', {message:params[:message]}.to_json
         end
         
-        render render json: {message:params[:message]}.to_json, status: 200
+        render json: {message:params[:message]}.to_json, status: 200
     end
 end
