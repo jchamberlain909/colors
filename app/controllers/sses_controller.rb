@@ -3,7 +3,13 @@ class SsesController < ApplicationController
     
     def subscribe
         response.headers['Content-Type'] = 'text/event-stream'
+        response.headers['Cache-Control'] = 'no-cache'
+        response.headers['X-Accel-Buffering'] = 'no'
+
+
         sse = SSE.new(response.stream)
+
+        sse.write("Connected")
         
         begin
             $redis.subscribe('pixels', 'messages') do |on|
@@ -23,5 +29,6 @@ class SsesController < ApplicationController
 
     def message
         $redis.publish 'messages', {message:params[:message]}.to_json
+        render json: {}, status: 200
     end
 end

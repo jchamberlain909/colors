@@ -13,7 +13,7 @@ class PixelsController < ApplicationController
         pixel = Pixel.find(params[:id])
         pixel.update(params.require(:pixel).permit(:color,:user_id))
 
-        # $redis.publish 'pixels', {color:pixel.color, x: pixel.x, y:pixel.y}.to_json
+        $redis.publish 'pixels', {color:pixel.color, x: pixel.x, y:pixel.y}.to_json
 
         render json: pixel, status: 200
     end
