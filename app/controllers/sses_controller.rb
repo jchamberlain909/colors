@@ -9,12 +9,12 @@ class SsesController < ApplicationController
 
         sse = SSE.new(response.stream)
 
-        sse.write("Connected")
+        sse.write("Connected", event:"connected")
         
         begin
             $redis.subscribe('pixels', 'messages') do |on|
                 on.message do |channel, msg|
-                    sse.write(msg)
+                    sse.write(msg, event:channel)
                 end
             end
         
