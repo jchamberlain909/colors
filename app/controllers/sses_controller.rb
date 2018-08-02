@@ -14,7 +14,7 @@ class SsesController < ApplicationController
         begin
             $redis.subscribe('pixels', 'messages') do |on|
                 on.message do |channel, msg|
-                    sse.write(msg, event: channel)
+                    sse.write(msg)
                 end
             end
         
@@ -32,6 +32,6 @@ class SsesController < ApplicationController
             $redis.publish 'messages', {message:params[:message]}.to_json
         end
         
-        render json: {}, status: 200
+        render {message:params[:message]}.to_json, status: 200
     end
 end
