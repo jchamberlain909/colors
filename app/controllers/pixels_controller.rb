@@ -14,7 +14,7 @@ class PixelsController < ApplicationController
         pixel.update(params.require(:pixel).permit(:color,:user_id))
 
         
-        Redis.new.publish 'pixels', {color:pixel.color, x: pixel.x, y:pixel.y}.to_json
+        Redis.new.publish 'pixels', {color:pixel.color, x: pixel.x, y:pixel.y, username:pixel.user.username}.to_json
         
         
 
