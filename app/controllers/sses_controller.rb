@@ -21,6 +21,7 @@ class SsesController < ApplicationController
         
         rescue IOError
             # Client Disconnected
+            sse.close
         ensure
             sse.close
         end
