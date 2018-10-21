@@ -13,7 +13,7 @@ class SsesController < ApplicationController
         sse.write("Connected", event:"connected")
         
         begin
-            Redis.new.subscribe('pixels', 'messages') do |on|
+            redis = Redis.new.subscribe('pixels', 'messages') do |on|
                 on.message do |channel, msg|
                     sse.write(msg, event:channel)
                 end
@@ -21,8 +21,10 @@ class SsesController < ApplicationController
         
         rescue IOError
             # Client Disconnected
+            redis.unsubscribe('pixels', 'messages')
             sse.close
         ensure
+            redis.unsubscribe('pixels', 'messages')
             sse.close
         end
         render nothing: true
